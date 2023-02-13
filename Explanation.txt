@@ -1,0 +1,12 @@
+Il y a trois classes principales: 
+- la classe Pump (pompe),
+- la classe Tank (réservoir),
+- la classe Machine (machine).
+
+La function main, initialise les pompes, machines ainsi que le réservoir.
+Il simule la production de l'usine pendant 2 minutes avec une boucle for.
+Elle donne la priorité aux pompes pour remplir le réservoir si celui-ci n'est pas plein.
+Puis donne la priorité aux machines pour produire les moteurs et roues.
+Elle vérifie aussi quelle machine a besoin de produire en priorité en fonction de ses articles produits.
+
+Resultat obtenu: 4 engines.
