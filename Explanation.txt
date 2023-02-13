@@ -9,4 +9,4 @@ Elle donne la priorité aux pompes pour remplir le réservoir si celui-ci n'est 
 Puis donne la priorité aux machines pour produire les moteurs et roues.
 Elle vérifie aussi quelle machine a besoin de produire en priorité en fonction de ses articles produits.
 
-Resultat obtenu: 4 engines.
+Resultat obtenu: 5 engines.
