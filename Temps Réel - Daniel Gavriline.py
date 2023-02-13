@@ -8,12 +8,10 @@ class Pump:
         self.production_quantity_oil = production_quantity_oil
         self.last_execution = -period
 
-    def is_ready(self, current_time):
-        return current_time - self.last_execution >= self.period
-
     def produce_oil(self, tank):
         time.sleep(self.execution_time)
         tank.add_oil(self.production_quantity_oil)
+        print("Adding Oil from pump")
         self.last_execution = time.time()
 
 
@@ -27,19 +25,17 @@ class Tank:
             self.quantity_oil = self.max_quantity_oil
         else:
             self.quantity_oil += quantity
+        print(f"Tank {self.quantity_oil}/{self.max_quantity_oil}")
 
 
 class Machine:
-    def __init__(self, name, required_oil_quantity, execution_time, period, stock):
+    def __init__(self, name, required_oil_quantity, execution_time, period):
         self.name = name
         self.required_oil_quantity = required_oil_quantity
         self.execution_time = execution_time
         self.period = period
-        self.stock = stock
+        self.stock = 0
         self.last_execution = -period
-
-    def is_ready(self, current_time):
-        return current_time - self.last_execution >= self.period
 
     def run_machine(self, tank):
         if tank.quantity_oil >= self.required_oil_quantity:
@@ -54,10 +50,10 @@ def main():
     print(f"Production started at {datetime.datetime.now()}")
 
     # Initialize the pump and machine objects
-    pump1 = Pump(5, 2, 10)
-    pump2 = Pump(period=15, execution_time=3, production_quantity_oil=20)
-    machine1 = Machine(name='Machine 1', required_oil_quantity=25, stock=0, period=5, execution_time=5)
-    machine2 = Machine(name='Machine 2', required_oil_quantity=5, stock=0, period=5, execution_time=3)
+    pump1 = Pump(5, 2, 10)  # period / execution / production
+    pump2 = Pump(15, 3, 20)
+    machine1 = Machine('Machine 1', 25, 5, 5)  # name / required_oil / period / execution
+    machine2 = Machine('Machine 2', 5, 5, 3)
     tank = Tank(50)
 
     # Initialize the counters for motors and wheels
@@ -99,6 +95,7 @@ def main():
             nb_motors -= 1
             nb_wheels -= 4
     print(f"Engines created: {nb_engines} with {nb_motors} remaning motors and {nb_wheels} remaining wheels")
+
 
 if __name__ == "__main__":
     main()
